@@ -55,7 +55,8 @@
             app:layout_constraintVertical_bias="0.612"
             custom:OColor="#1A237E"
             custom:XColor="#1A237E"
-            custom:boardColor="#3F51B5" />
+            custom:boardColor="#3F51B5"
+            custom:LineColor="#00FF00"/>
 
         <TextView
             android:id="@+id/playerTv"

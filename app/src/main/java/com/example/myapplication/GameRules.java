@@ -6,8 +6,7 @@ import android.widget.TextView;
 public class GameRules {
     private int[][] gameBoard;
     private int shape = 1;
-
-
+    private int[] winOption = {-1,-1,-1};
 
     private Button playAgainBtn;
     private TextView playTurn;
@@ -45,19 +44,28 @@ public class GameRules {
         boolean winner = false;
         for(int i = 0; i < 3; i++)//check if there is a winner in the rows
         {
-            if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][0] == gameBoard[i][2] && gameBoard[i][0] != 0)
-               winner = true;
+            if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][0] == gameBoard[i][2] && gameBoard[i][0] != 0) {
+                winner = true;
+                winOption = new int[] {i,0,1};
+            }
 
         }
         for(int j = 0; j < 3; j++)//check if there is a winner in the column
         {
-            if(gameBoard[0][j] == gameBoard[1][j] && gameBoard[0][j] == gameBoard[2][j] && gameBoard[0][j] != 0)
+            if(gameBoard[0][j] == gameBoard[1][j] && gameBoard[0][j] == gameBoard[2][j] && gameBoard[0][j] != 0) {
                 winner = true;
+                winOption = new int[] {0,j,2};
+            }
         }
-        if(gameBoard[0][0] == gameBoard[1][1] && gameBoard[0][0] == gameBoard[2][2] && gameBoard[0][0] != 0)
+        if(gameBoard[0][0] == gameBoard[1][1] && gameBoard[0][0] == gameBoard[2][2] && gameBoard[0][0] != 0) {
             winner = true;
-        if(gameBoard[2][0] == gameBoard[1][1] && gameBoard[2][0] == gameBoard[0][2] && gameBoard[2][0] != 0)
+            winOption = new int[] {0,2,3};
+        }
+
+        if(gameBoard[2][0] == gameBoard[1][1] && gameBoard[2][0] == gameBoard[0][2] && gameBoard[2][0] != 0) {
             winner = true;
+            winOption = new int[] {2,2,4};
+        }
 
         int fullBoard = 0;
         for(int i = 0; i < 3; i++)
@@ -107,6 +115,10 @@ public class GameRules {
     }
     public void setPlayAgainBtn(Button playAgainBtn) {
         this.playAgainBtn = playAgainBtn;
+    }
+
+    public int[] getWinOption() {
+        return winOption;
     }
 
     public void setPlayTurn(TextView playTurn) {
